@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Colores de marca por defecto; el sitio público los reemplaza con los de Configuración */
+  :root { --c-primary: 20 80 92; --c-primary-dark: 16 62 72; --c-primary-soft: 228 238 240; --c-accent: 217 162 27; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-niebla font-sans text-tinta antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-petroleo; }
+}
+
+@layer components {
+  .label { @apply mb-1.5 block text-sm font-medium text-tinta; }
+  .input { @apply w-full rounded-md border border-tinta/40 bg-white px-3 py-2.5 text-base text-tinta placeholder:text-tinta/50 focus:border-petroleo focus:outline-none focus:ring-2 focus:ring-petroleo/30; }
+  .btn-primary { @apply inline-flex items-center justify-center rounded-md bg-petroleo px-4 py-2.5 font-medium text-white transition-colors hover:bg-petroleo-dark disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-secondary { @apply inline-flex items-center justify-center rounded-md border border-tinta/40 bg-white px-4 py-2.5 font-medium text-tinta transition-colors hover:bg-arena/40 disabled:opacity-60; }
+  .alert-error { @apply rounded-md border border-red-300 bg-red-50 px-3 py-2.5 text-sm text-red-900; }
+  .btn-whatsapp { @apply inline-flex items-center justify-center gap-2 rounded-md bg-[#0E7A4F] px-4 py-2.5 font-medium text-white transition-colors hover:bg-[#0B6340]; }
+  .alert-ok { @apply rounded-md border border-emerald-300 bg-emerald-50 px-3 py-2.5 text-sm text-emerald-900; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
