@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # EMAIL_FROM no es secreto (es la dirección remitente de los avisos) y su valor por defecto
+  # aparece en src/lib/email.ts: sin esto, el escaneo de secretos de Netlify corta el build.
+  SECRETS_SCAN_OMIT_KEYS = "EMAIL_FROM"
