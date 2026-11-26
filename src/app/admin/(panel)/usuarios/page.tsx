@@ -11,10 +11,12 @@ export default async function UsersPage({ searchParams }: { searchParams: Promis
 
   // Se usa la clave de servicio porque los emails viven en el sistema de autenticación
   const admin = createAdminClient()
-  const [{ data: profiles }, { data: authData }] = await Promise.all([
+  const [{ data: profiles, error: profilesError }, { data: authData, error: authError }] = await Promise.all([
     admin.from('profiles').select('id, full_name, role, active').order('created_at'),
     admin.auth.admin.listUsers({ perPage: 200 }),
   ])
+  if (profilesError) console.error('[usuarios] lectura de perfiles falló:', profilesError.code, profilesError.message)
+  if (authError) console.error('[usuarios] listUsers falló:', authError.status, authError.message)
   const emails = new Map<string, string>((authData?.users ?? []).map((u) => [u.id, u.email ?? ''] as [string, string]))
 
   return (

@@ -33,6 +33,7 @@ export async function createUser(formData: FormData) {
     user_metadata: { full_name: parsed.data.fullName },
   })
   if (error || !data.user) {
+    console.error('[usuarios] createUser falló:', error?.status, error?.code, error?.message)
     const exists = error?.message.toLowerCase().includes('already')
     return back('error', exists ? 'Ya existe un usuario con ese email.' : 'No pudimos crear el usuario. Revisá los datos e intentá de nuevo.')
   }
